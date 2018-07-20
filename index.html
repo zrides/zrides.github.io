@@ -1,1 +1,35 @@
-Hello World
+<head>
+  <body>
+	<h1> TEST WEBPAGE FOR OR TOWER </h1><p id="user"></p>
+	<h3> Light State </h3><p id="light"></p>
+	<h3> Trigger One </h3><p id="trigOne"></p>
+	<h3> Trigger Two </h3><p id="trigTwo"></p>
+	<h3> Current Set Value </h3><p id="currentValue"></p>
+    <script>
+    function refresh() {
+      var xhttp = new XMLHttpRequest();
+      xhttp.open("GET", "https://9tul2igfwf.execute-api.us-east-1.amazonaws.com/prod", true);
+      xhttp.send();
+      xhttp.addEventListener("readystatechange", processRequest, false);
+      function processRequest(e) {
+        if (xhttp.readyState == 4 && xhttp.status == 200) {
+          var response = JSON.parse(xhttp.responseText);
+          var userid = response.userID;
+		  var lightState = response.lightState;
+		  var triggerOne = response.trigOneState;
+		  var triggerTwo = response.trigTwoState;
+		  var currentVal = response.currentVal;
+		  document.getElementById("light").innerHTML = lightState;
+		  document.getElementById("user").innerHTML = userid;
+		  document.getElementById("trigOne").innerHTML = triggerOne;
+		  document.getElementById("trigTwo").innerHTML = triggerTwo;
+		  document.getElementById("currentValue").innerHTML = currentVal;
+          console.log(response);
+        }
+      }
+      setTimeout(refresh, 1000);
+    }
+    refresh();
+    </script>
+  </body>
+</head>

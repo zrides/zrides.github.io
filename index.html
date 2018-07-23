@@ -2,9 +2,9 @@
   <body>
 	<h1> TEST WEBPAGE FOR OR TOWER </h1><p id="user"></p>
 	<h3> Light State </h3><p id="light"></p>
-	<h3> Trigger One </h3><p id="trigOne"></p>
-	<h3> Trigger Two </h3><p id="trigTwo"></p>
-	<h3> Current Set Value </h3><p id="currentValue"></p>
+	<h3> Take Picture </h3><p id="takePicture"></p>
+	<h3> Take Video </h3><p id="takeVideo"></p>
+	<h3> White Balance Level </h3><p id="whiteBalance"></p>
     <script>
     function refresh() {
       var xhttp = new XMLHttpRequest();
@@ -15,15 +15,18 @@
         if (xhttp.readyState == 4 && xhttp.status == 200) {
           var response = JSON.parse(xhttp.responseText);
           var userid = response.userID;
-		  var lightState = response.lightState;
+		  var lightVal = response.lightVal;
 		  var triggerOne = response.trigOneState;
 		  var triggerTwo = response.trigTwoState;
 		  var currentVal = response.currentVal;
+		  var takePicture = response.takePicture;
+		  var takeVideo = response.takeVideo;
+		  var whiteBalance = response.whiteBalance;
 		  document.getElementById("light").innerHTML = lightState;
 		  document.getElementById("user").innerHTML = userid;
-		  document.getElementById("trigOne").innerHTML = triggerOne;
-		  document.getElementById("trigTwo").innerHTML = triggerTwo;
-		  document.getElementById("currentValue").innerHTML = currentVal;
+		  document.getElementById("takePicture").innerHTML = takePicture;
+		  document.getElementById("takeVideo").innerHTML = takeVideo;
+		  document.getElementById("whiteBalance").innerHTML = whiteBalance;
           console.log(response);
         }
       }
